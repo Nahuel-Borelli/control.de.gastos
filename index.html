@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control de Gastos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#222" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Control de Gastos</h1>
+    <nav>
+      <button data-tab="tab-carga" class="nav-button active">Carga</button>
+      <button data-tab="tab-historial" class="nav-button">Historial</button>
+      <button data-tab="tab-resumen" class="nav-button">Resumen</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- TAB CARGA -->
+    <section id="tab-carga" class="tab active">
+      <h2>Cargar gasto</h2>
+      <form id="gasto-form">
+        <input type="hidden" id="gasto-id-edit" />
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required />
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" placeholder="Monto" required step="0.01" />
+        <label for="moneda">Moneda:</label>
+        <select id="moneda"></select>
+        <label for="categoria">Categoría:</label>
+        <div class="category-input-group">
+          <select id="categoria">
+            <option value="">Seleccionar Categoría</option>
+          </select>
+          <button type="button" id="btn-gestionar-categorias" class="icon-button">+</button>
+        </div>
+        <button type="submit">Guardar Gasto</button>
+      </form>
+    </section>
+
+    <!-- TAB HISTORIAL -->
+    <section id="tab-historial" class="tab">
+      <h2>Historial de Gastos</h2>
+      <div class="filters">
+        <label for="historial_fecha_inicio">Desde:</label>
+        <input type="date" id="historial_fecha_inicio" />
+        <label for="historial_fecha_fin">Hasta:</label>
+        <input type="date" id="historial_fecha_fin" />
+        <button id="btn-filtrar-historial">Filtrar</button>
+      </div>
+      <ul id="lista-gastos" class="card-list">
+        <li>No hay gastos registrados.</li>
+      </ul>
+    </section>
+
+    <!-- TAB RESUMEN -->
+    <section id="tab-resumen" class="tab">
+      <h2>Resumen por Categoría</h2>
+      <div class="filters">
+        <label for="fecha_inicio">Desde:</label>
+        <input type="date" id="fecha_inicio" />
+        <label for="fecha_fin">Hasta:</label>
+        <input type="date" id="fecha_fin" />
+        <button id="btn-filtrar">Filtrar</button>
+      </div>
+      <div class="kpi-summary">
+        <h3>Total Gastado (USD): <span id="total-periodo">0.00</span></h3>
+      </div>
+      <ul id="tabla-categorias" class="card-list">
+        <li>No hay datos para mostrar.</li>
+      </ul>
+    </section>
+  </main>
+
+  <div id="toast-container"></div>
+
+  <!-- Modal de Gestión de Categorías -->
+  <div id="modal-categorias" class="modal-container hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close-btn">X</button>
+      <h2>Gestionar Categorías</h2>
+      
+      <form id="form-categoria">
+        <input type="hidden" id="categoria-id-edit" />
+        <label for="categoria-nombre">Nombre:</label>
+        <input type="text" id="categoria-nombre" placeholder="Nombre de la categoría" required />
+        <button type="submit">Guardar Categoría</button>
+      </form>
+
+      <ul id="lista-categorias-gestion"></ul>
+    </div>
+  </div>
+  <script src="main.js" type="module"></script>
+</body>
+</html>
