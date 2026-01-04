@@ -1,4 +1,4 @@
-export const API_URL = 'http://192.168.1.134:3000';
+export const API_URL = 'https://gastos-api-gb9n.onrender.com';
 
 // --- Gastos ---
 export async function getGastos(fecha_inicio, fecha_fin) {
